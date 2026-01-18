@@ -38,6 +38,7 @@ namespace PersonalLibrary.Data
             {
                 entity.HasKey(e => e.BookReadingId);
                 entity.Property(e => e.DateAdded).IsRequired();
+                entity.Property(e => e.ReadingStatusId).HasDefaultValue(1); //automatically sets to TBR
                 entity.HasOne(e => e.Book)
                       .WithMany(b => b.BookReadings)
                       .HasForeignKey(e => e.BookId)

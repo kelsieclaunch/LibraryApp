@@ -1,22 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PersonalLibrary.Data;
 
-internal static class Program
-{
-    public static IServiceProvider Services { get; private set; } = null!;
+var services = new ServiceCollection();
 
-    [STAThread]
-    static void Main()
-    {
-        ApplicationConfiguration.Initialize();
+services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=PersonalLibrary;Trusted_Connection=True;"));
 
-        var services = new ServiceCollection();
+using var serviceProvider = services.BuildServiceProvider();
 
-        services.AddDbContext<PersonalLibrary.Data.LibraryDbContext>(options =>
-            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ConsoleApp1;Trusted_Connection=True"));
+//create db context
+using var db = serviceProvider.GetRequiredService<LibraryDbContext>();
 
-        Services = services.BuildServiceProvider();
-
-        Application.Run(new MainForm());
-    }
-}
+Console.WriteLine("EF Core DbContext initialized successfully.");
+    
