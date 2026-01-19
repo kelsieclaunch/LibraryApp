@@ -1,29 +1,21 @@
-﻿using PersonalLibrary.Data;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PersonalLibrary.Data;
+using PersonalLibrary.UI.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace PersonalLibrary.UI
+namespace PersonalLibrary.UI.Views;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            var db = ((App)Application.Current).Services.GetRequiredService<LibraryDbContext>();
+        var db = ((App)Application.Current).Services.GetRequiredService<LibraryDbContext>();
 
-            DataContext = new MainViewModel(db);
-        }
+        DataContext = new MainViewModel(db);
     }
 }

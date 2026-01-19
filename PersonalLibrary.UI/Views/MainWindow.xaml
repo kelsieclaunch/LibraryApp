@@ -1,13 +1,52 @@
-﻿<Window x:Class="PersonalLibrary.UI.MainWindow"
+﻿<Window x:Class="PersonalLibrary.UI.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalLibrary.UI"
         mc:Ignorable="d"
-        Title="Personal Library" Height="450" Width="450">
-    <Grid>
-        <DataGrid ItemsSource="{Binding Books}" AutoGenerateColumns="True" IsReadOnly="True"/>
+        Title="The Book Nook" Height="500" Width="500"
+        Background="{StaticResource BackgroundBrush}">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!-- Header -->
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,0,0,8">
+           <TextBlock Text="The Book Nook" FontSize="24" FontWeight="SemiBold"/>
+        </StackPanel>
+
+        <!-- Add Book Button -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8,0,0,8">
+            <Button Content="Add Book" Width="100" Height="30"/>
+        </StackPanel>
+
+
+        <!-- DataGrid Card -->
+
+        <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="12" BorderBrush="{StaticResource DividerBrush}" BorderThickness="1">
+
+            <DataGrid
+                ItemsSource="{Binding Books}"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                HeadersVisibility="Column"
+                GridLinesVisibility="None"
+                RowHeight="32"
+                FontSize="12">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                    <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="120"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding ReadingStatusName}" Width="80"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="50"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Border>   
     </Grid>
 </Window>

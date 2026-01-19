@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using PersonalLibrary.Data;
 using System.Windows;
 
+namespace PersonalLibrary.UI;
+
 public partial class App : Application
 {
     public IServiceProvider Services { get; private set; } = null!;
