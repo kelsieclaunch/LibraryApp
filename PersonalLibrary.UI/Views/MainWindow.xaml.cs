@@ -36,50 +36,51 @@ public partial class MainWindow : Window
 
     private void BooksDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
     {
-        if (e.Row.Item is not Book book || book.BookReading == null)
+        if (e.EditingElement is ComboBox comboBox && comboBox.SelectedValue is int newStatusId && e.Row.Item is Book book)
         {
-            return;
+
+            var bookReading = book.BookReading;
+
+            if (bookReading == null)
+            {
+                return;
+            }
+
+            var now = DateTime.Now;
+
+            switch (bookReading.ReadingStatusId)
+            {
+                case 1: //TBR
+                    bookReading.DateStarted = null;
+                    bookReading.DateFinished = null;
+                    break;
+
+                case 2: //Reading
+                    bookReading.DateStarted ??= now;
+                    bookReading.DateFinished = null;
+                    break;
+
+                case 3: //Finished
+                    if (bookReading.DateStarted == null)
+                    {
+                        bookReading.DateStarted = now;
+                    }
+                    if (bookReading.DateFinished == null)
+                    {
+                        bookReading.DateFinished = now;
+                    }
+                    break;
+
+                case 4: //DNF
+                    bookReading.DateFinished = null;
+                    break;
+
+            }
+
+            _dbContext.SaveChanges();
+           
         }
 
-        var bookReading = _dbContext.BookReadings.FirstOrDefault(br => br.BookReadingId == book.BookReading.BookReadingId);
 
-        if (bookReading == null)
-        {
-            return;
-        }
-
-        var now = DateTime.Now;
-
-        switch (book.BookReading.ReadingStatusId)
-        {
-            case 1: //TBR
-                bookReading.DateStarted = null;
-                bookReading.DateFinished = null;
-                break;
-
-            case 2: //Reading
-                bookReading.DateStarted ??= now;
-                bookReading.DateFinished = null;
-                break;
-
-            case 3: //Finished
-                if (bookReading.DateStarted == null)
-                {
-                    bookReading.DateStarted = now;
-                }
-                if (bookReading.DateFinished == null)
-                {
-                    bookReading.DateFinished = now;
-                }
-                break;
-
-            case 4: //DNF
-                bookReading.DateFinished = null;
-                break;
-
-        }
-
-        bookReading.ReadingStatusId = book.BookReading.ReadingStatusId;
-        _dbContext.SaveChanges();
     }
 }

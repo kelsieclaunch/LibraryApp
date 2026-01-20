@@ -37,7 +37,6 @@ namespace PersonalLibrary.Data
             modelBuilder.Entity<BookReading>(entity =>
             {
                 entity.HasKey(e => e.BookReadingId);
-                entity.Property(e => e.DateAdded).IsRequired();
                 entity.Property(e => e.ReadingStatusId).HasDefaultValue(1); //automatically sets to TBR
                 entity.HasOne(e => e.Book)
                       .WithOne(b => b.BookReading)

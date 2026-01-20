@@ -60,7 +60,7 @@
                         Binding="{Binding BookReading.DateStarted, StringFormat=d}"
                         Width="80"
                         IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Finished"
+                    <DataGridTextColumn Header="Finished"
                         Binding="{Binding BookReading.DateFinished, StringFormat=d}"
                         Width="80"
                         IsReadOnly="True"/>

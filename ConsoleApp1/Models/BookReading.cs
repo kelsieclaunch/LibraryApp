@@ -1,23 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace PersonalLibrary.Models
 {
-    public class BookReading
+    public class BookReading : INotifyPropertyChanged
     {
         //primary key
         public int BookReadingId { get; set; }
 
         //foreign keys
         public int BookId { get; set; }
-        public int ReadingStatusId { get; set; }
 
-        public DateTime DateAdded { get; set; }
-        public DateTime? DateStarted { get; set; }
-        public DateTime? DateFinished { get; set; }
+        private int _readingStatusId;
+        public int ReadingStatusId
+        {
+            get => _readingStatusId;
+            set
+            {
+                if (_readingStatusId != value)
+                {
+                    _readingStatusId = value;
+                    OnPropertyChanged(nameof(ReadingStatusId));
+                }
 
-        public int? Rating { get; set; } // 1 to 5 stars
+            }
+        }
+
+        private DateTime? _dateStarted;
+        public DateTime? DateStarted
+        {
+            get => _dateStarted;
+            set
+            {
+                if (_dateStarted != value)
+                {
+                    _dateStarted = value;
+                    OnPropertyChanged(nameof(DateStarted));
+                }
+            }
+        }
+
+        private DateTime? _dateFinished;
+        public DateTime? DateFinished
+        {
+            get => _dateFinished;
+            set
+            {
+                if (_dateFinished != value)
+                {
+                    _dateFinished = value;
+                    OnPropertyChanged(nameof(DateFinished));
+                }
+            }
+        }
+
+        private int? _rating;
+        public int? Rating
+        {
+            get => _rating;
+            set
+            {
+                if (_rating != value)
+                {
+                    _rating = value;
+                    OnPropertyChanged(nameof(Rating));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // Navigation
         public virtual Book Book { get; set; } = null!;

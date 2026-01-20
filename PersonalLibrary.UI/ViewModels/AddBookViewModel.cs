@@ -50,7 +50,7 @@ namespace PersonalLibrary.UI.ViewModels
             {
                 BookId = newBook.BookId,
                 ReadingStatusId = tbrStatus.ReadingStatusId,
-                DateAdded = DateTime.Now
+               
             };
 
             _dbContext.BookReadings.Add(bookReading);
