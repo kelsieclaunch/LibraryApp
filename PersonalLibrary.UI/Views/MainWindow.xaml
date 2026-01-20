@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalLibrary.UI"
         mc:Ignorable="d"
-        Title="The Book Nook" Height="500" Width="500"
+        Title="The Book Nook" Height="700" Width="700"
         Background="{StaticResource BackgroundBrush}">
+
+    <Window.Resources>
+            <CollectionViewSource x:Key="ReadingStatusesView" 
+            Source="{Binding ReadingStatuses}"/>
+        </Window.Resources>
+
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -49,8 +55,16 @@
                         DisplayMemberPath="Name"
                         Width="Auto"
                         IsReadOnly="False"
-                        ItemsSource="{Binding DataContext.ReadingStatuses, Source={x:Reference BooksDataGrid}}"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="50"/>
+                        ItemsSource="{Binding Source={StaticResource ReadingStatusesView}}"/>
+                    <DataGridTextColumn Header="Started"
+                        Binding="{Binding BookReading.DateStarted, StringFormat=d}"
+                        Width="80"
+                        IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Finished"
+                        Binding="{Binding BookReading.DateFinished, StringFormat=d}"
+                        Width="80"
+                        IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding BookReading.Rating}" Width="50" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
 
