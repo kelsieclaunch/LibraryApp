@@ -22,7 +22,7 @@
 
         <!-- Add Book Button -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="8,0,0,8">
-            <Button Content="Add Book" Width="100" Height="30"/>
+            <Button Content="Add Book" Width="100" Height="30" Command="{Binding AddBookCommand}"/>
         </StackPanel>
 
 
@@ -42,7 +42,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
                     <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="120"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding ReadingStatusName}" Width="80"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding BookReading.ReadingStatus.Name}" Width="Auto"/>
                     <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="50"/>
                 </DataGrid.Columns>
             </DataGrid>

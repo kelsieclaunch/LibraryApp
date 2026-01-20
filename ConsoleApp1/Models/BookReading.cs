@@ -20,7 +20,7 @@ namespace PersonalLibrary.Models
         public int? Rating { get; set; } // 1 to 5 stars
 
         // Navigation
-        public Book Book { get; set; } = null!;
-        public ReadingStatus ReadingStatus { get; set; } = null!;
+        public virtual Book Book { get; set; } = null!;
+        public virtual ReadingStatus ReadingStatus { get; set; } = null!;
     }
 }

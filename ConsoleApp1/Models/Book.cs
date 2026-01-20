@@ -16,6 +16,6 @@ namespace PersonalLibrary.Models
         public int? PublicationYear { get; set; }
 
         // Navigation
-        public ICollection<BookReading> BookReadings { get; set; } = new List<BookReading>();
+        public virtual BookReading? BookReading { get; set; }
     }
 }

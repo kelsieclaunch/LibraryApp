@@ -40,7 +40,7 @@ namespace PersonalLibrary.Data
                 entity.Property(e => e.DateAdded).IsRequired();
                 entity.Property(e => e.ReadingStatusId).HasDefaultValue(1); //automatically sets to TBR
                 entity.HasOne(e => e.Book)
-                      .WithMany(b => b.BookReadings)
+                      .WithMany(b => b.BookReading)
                       .HasForeignKey(e => e.BookId)
                       .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.ReadingStatus)
