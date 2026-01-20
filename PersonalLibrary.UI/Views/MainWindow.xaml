@@ -30,19 +30,25 @@
 
         <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="12" BorderBrush="{StaticResource DividerBrush}" BorderThickness="1">
 
-            <DataGrid
+            <DataGrid x:Name="BooksDataGrid"
                 ItemsSource="{Binding Books}"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 HeadersVisibility="Column"
                 GridLinesVisibility="None"
+                CellEditEnding="BooksDataGrid_CellEditEnding"
                 RowHeight="32"
                 FontSize="12">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
                     <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="120"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding BookReading.ReadingStatus.Name}" Width="Auto"/>
+                    <DataGridComboBoxColumn Header="Status"
+                        SelectedValueBinding="{Binding BookReading.ReadingStatusId, Mode=TwoWay}"
+                        SelectedValuePath="ReadingStatusId"
+                        DisplayMemberPath="Name"
+                        Width="Auto"
+                        ItemsSource="{Binding ReadingStatuses}"/>
                     <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="50"/>
                 </DataGrid.Columns>
             </DataGrid>

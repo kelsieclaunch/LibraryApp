@@ -14,6 +14,7 @@ namespace PersonalLibrary.UI.ViewModels
     {
         private readonly LibraryDbContext _dbContext;
         public ObservableCollection<Book> Books { get; }
+        public ObservableCollection<ReadingStatus> ReadingStatuses { get; }
 
         public ICommand AddBookCommand { get; }
         public MainViewModel(LibraryDbContext dbContext)
@@ -24,6 +25,11 @@ namespace PersonalLibrary.UI.ViewModels
                 _dbContext.Books
                 .Include(b => b.BookReading)
                 .ThenInclude(br => br.ReadingStatus)
+                .AsNoTracking()
+                .ToList());
+
+            ReadingStatuses = new ObservableCollection<ReadingStatus>(
+                _dbContext.ReadingStatuses
                 .AsNoTracking()
                 .ToList());
 
