@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:PersonalLibrary.UI.Views"
         mc:Ignorable="d"
         Title="Submit Rating" Height="100" Width="200" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <Grid>
-        
-    </Grid>
+
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+        <Button Content="☆" Tag="1" FontSize="24" Click="Star_Click" x:Name="Star1" MouseEnter="Star_MouseEnter" MouseLeave="Star_MouseLeave"/>
+        <Button Content="☆" Tag="2" FontSize="24" Click="Star_Click" x:Name="Star2" MouseEnter="Star_MouseEnter" MouseLeave="Star_MouseLeave"/>
+        <Button Content="☆" Tag="3" FontSize="24" Click="Star_Click" x:Name="Star3" MouseEnter="Star_MouseEnter" MouseLeave="Star_MouseLeave"/>
+        <Button Content="☆" Tag="4" FontSize="24" Click="Star_Click" x:Name="Star4" MouseEnter="Star_MouseEnter" MouseLeave="Star_MouseLeave"/>
+        <Button Content="☆" Tag="5" FontSize="24" Click="Star_Click" x:Name="Star5" MouseEnter="Star_MouseEnter" MouseLeave="Star_MouseLeave"/>
+       
+                
+     </StackPanel>
 </Window>

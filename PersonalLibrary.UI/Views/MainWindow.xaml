@@ -43,6 +43,7 @@
                 HeadersVisibility="Column"
                 GridLinesVisibility="None"
                 CellEditEnding="BooksDataGrid_CellEditEnding"
+                MouseDoubleClick="BooksDataGrid_MouseDoubleClick"
                 RowHeight="32"
                 FontSize="12">
 
@@ -64,7 +65,7 @@
                         Binding="{Binding BookReading.DateFinished, StringFormat=d}"
                         Width="80"
                         IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding BookReading.Rating}" Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding BookReading.RatingStars}" Width="100" IsReadOnly="True" x:Name="RatingColumn"/>
                 </DataGrid.Columns>
             </DataGrid>
 

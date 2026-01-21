@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static System.Net.WebRequestMethods;
 using PersonalLibrary.Models;
+using System.Windows.Input;
 
 namespace PersonalLibrary.UI.Views;
 
@@ -45,10 +46,15 @@ public partial class MainWindow : Window
             {
                 return;
             }
+            var previousStatusId = bookReading.ReadingStatusId;
+
+            bookReading.ReadingStatusId = newStatusId;
+
+            var transitionedToFinished = previousStatusId != 3 && newStatusId == 3;
 
             var now = DateTime.Now;
 
-            switch (bookReading.ReadingStatusId)
+            switch (newStatusId)
             {
                 case 1: //TBR
                     bookReading.DateStarted = null;
@@ -77,10 +83,57 @@ public partial class MainWindow : Window
 
             }
 
+            if (transitionedToFinished)
+            {
+                var ratingWindow = new RateBookWindow
+                {
+                    Owner = this
+                };
+
+                if(ratingWindow.ShowDialog() == true && ratingWindow.SelectedRating.HasValue)
+                {
+                    bookReading.Rating = ratingWindow.SelectedRating.Value;
+                }
+            }
+
             _dbContext.SaveChanges();
            
         }
 
 
     }
+
+    private void BooksDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+
+        if (sender is not DataGrid dataGrid) return;
+
+        if (dataGrid.CurrentCell.Column == null) return;
+
+        if (dataGrid.CurrentCell.Column.Header?.ToString() != "Rating") return;
+
+
+        if (dataGrid.SelectedItem  is not Book book)
+        {
+            return;
+        }
+
+        var bookReading = book.BookReading;
+        if (bookReading == null) return;
+
+        if (bookReading.ReadingStatusId != 3) return;
+
+        var ratingWindow = new RateBookWindow
+        {
+            Owner = this
+        };
+
+        if(ratingWindow.ShowDialog() == true && ratingWindow.SelectedRating.HasValue)
+        {
+            bookReading.Rating = ratingWindow.SelectedRating.Value;
+            _dbContext.SaveChanges();
+        }
+    }
+
+   
 }

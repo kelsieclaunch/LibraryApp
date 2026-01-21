@@ -66,6 +66,7 @@ namespace PersonalLibrary.Models
                 {
                     _rating = value;
                     OnPropertyChanged(nameof(Rating));
+                    OnPropertyChanged(nameof(RatingStars));
                 }
             }
         }
@@ -79,5 +80,16 @@ namespace PersonalLibrary.Models
         // Navigation
         public virtual Book Book { get; set; } = null!;
         public virtual ReadingStatus ReadingStatus { get; set; } = null!;
+
+        // Rating Stars
+        public string RatingStars
+        {
+            get
+            {
+                int rating = Rating ?? 0;
+                return new string('★', rating) + new string('☆', 5 - rating);
+                
+            }
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace PersonalLibrary.UI.ViewModels
                 _dbContext.Books
                 .Include(b => b.BookReading)
                 .ThenInclude(br => br.ReadingStatus)
-                .AsNoTracking()
                 .ToList());
 
             ReadingStatuses = new ObservableCollection<ReadingStatus>(
