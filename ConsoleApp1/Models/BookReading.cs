@@ -28,6 +28,8 @@ namespace PersonalLibrary.Models
             }
         }
 
+        public DateTime DateAdded { get; set; }
+
         private DateTime? _dateStarted;
         public DateTime? DateStarted
         {

@@ -16,6 +16,19 @@ namespace PersonalLibrary.UI.Views
         private int _selectedRating = 0;
         public EditBookWindow(Book book, List<ReadingStatus> readingStatuses)
         {
+            _book = book;
+
+            if (_book.BookReading == null)
+            {
+                _book.BookReading = new BookReading
+                {
+                    BookId = _book.BookId,
+                    ReadingStatusId = 1,
+                    DateStarted = null,
+                    DateFinished = null
+                };
+            }
+
             InitializeComponent();
             _book = book ?? throw new ArgumentNullException(nameof(book));
             _readingStatuses = readingStatuses ?? throw new ArgumentNullException(nameof(readingStatuses));

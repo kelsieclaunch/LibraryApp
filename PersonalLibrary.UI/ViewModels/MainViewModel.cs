@@ -27,13 +27,18 @@ namespace PersonalLibrary.UI.ViewModels
                 .ThenInclude(br => br.ReadingStatus)
                 .ToList());
 
-            foreach (var book in Books) { }
+            foreach (var book in Books)
             {
                 if(book.BookReading == null)
                 {
                     book.BookReading = new BookReading
                     {
-                        ReadingStatusId = 1
+                        ReadingStatusId = 1,
+                        BookId = book.BookId,
+                        DateStarted = null,
+                        DateFinished = null,
+                        DateAdded = DateTime.Now
+
                     };
                     _dbContext.BookReadings.Add(book.BookReading);
                 }

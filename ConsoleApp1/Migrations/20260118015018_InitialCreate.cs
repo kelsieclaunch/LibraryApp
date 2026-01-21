@@ -51,7 +51,6 @@ namespace PersonalLibrary.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     ReadingStatusId = table.Column<int>(type: "int", nullable: false),
-                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateStarted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateFinished = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: true)
