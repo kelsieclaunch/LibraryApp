@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalLibrary.UI.Views"
         mc:Ignorable="d"
-        Title="Edit Book" Height="500" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="{StaticResource BackgroundBrush}">
+        Title="Edit Book" Height="550" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="{StaticResource BackgroundBrush}">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -45,7 +45,7 @@
 
         <!-- Reading Status -->
         <TextBlock Text="Reading Status" Grid.Row="5" FontWeight="SemiBold"/>
-        <ComboBox x:Name="StatusComboBox" Grid.Row="6" Margin="0,4,0,8" DisplayMemberPath="Name" SelectedValuePath="ReadingStatusId"/>
+        <ComboBox x:Name="StatusComboBox" Grid.Row="6" Margin="0,4,0,8" DisplayMemberPath="Name" SelectedValuePath="ReadingStatusId" ItemsSource="{Binding ReadingStatuses}" SelectedValue="{Binding BookReading.ReadingStatusId, Mode=TwoWay}"/>
 
         <!-- Dates -->
 

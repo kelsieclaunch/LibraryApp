@@ -11,11 +11,14 @@ namespace PersonalLibrary.UI.Views
         private readonly Book _book;
         public Book EditedBook => _book;
 
+        private readonly List<ReadingStatus> _readingStatuses;
+
         private int _selectedRating = 0;
-        public EditBookWindow(Book book)
+        public EditBookWindow(Book book, List<ReadingStatus> readingStatuses)
         {
             InitializeComponent();
-            _book = book;
+            _book = book ?? throw new ArgumentNullException(nameof(book));
+            _readingStatuses = readingStatuses ?? throw new ArgumentNullException(nameof(readingStatuses));
 
             // set initial values
             TitleTextBox.Text = _book.Title;
@@ -23,15 +26,18 @@ namespace PersonalLibrary.UI.Views
             ISBNTextBox.Text = _book.ISBN;
             PublicationYearTextBox.Text = _book.PublicationYear?.ToString();
 
-            StatusComboBox.ItemsSource = _book.BookReading.ReadingStatus?.BookReadings ?? throw new InvalidOperationException();
-            StatusComboBox.SelectedItem = _book.BookReading.ReadingStatusId;
+            StatusComboBox.ItemsSource = _readingStatuses;
+            StatusComboBox.SelectedValuePath = "ReadingStatusId";
+            StatusComboBox.DisplayMemberPath = "Name";
+            StatusComboBox.SelectedValue = _book.BookReading.ReadingStatusId;
+
 
             DateStartedPicker.SelectedDate = _book.BookReading.DateStarted;
             DateFinishedPicker.SelectedDate = _book.BookReading.DateFinished;
 
             _selectedRating = _book.BookReading.Rating ?? 0;
             UpdateStars();
-
+            
         }
 
         private void Star_Click(object sender, RoutedEventArgs e)

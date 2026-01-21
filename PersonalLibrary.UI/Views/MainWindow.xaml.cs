@@ -138,27 +138,20 @@ public partial class MainWindow : Window
    private void EditBook_Click(object sender, RoutedEventArgs e)
     {
         if (BooksDataGrid.SelectedItem is not Book book) return;
+        var statuses = _dbContext.ReadingStatuses.OrderBy(rs => rs.SortOrder).ToList();
 
 
-        var editWindow = new EditBookWindow(book)
+        var editWindow = new EditBookWindow(book, statuses)
         {
             Owner = this
         };
 
         bool? result = editWindow.ShowDialog();
+
         if(result == true)
         {
-            if(DataContext is MainViewModel vm)
-            {
-                var index = vm.Books.IndexOf(book);
-                if(index >= 0)
-                {
-                    vm.Books[index] = book;
-                }
-            }
+            _dbContext.SaveChanges();
         }
-
-        _dbContext.SaveChanges();
     }
 
     private void DeleteBook_Click(object sender, RoutedEventArgs e)
