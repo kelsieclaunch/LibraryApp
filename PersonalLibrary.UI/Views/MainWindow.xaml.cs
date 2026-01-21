@@ -135,5 +135,51 @@ public partial class MainWindow : Window
         }
     }
 
-   
+   private void EditBook_Click(object sender, RoutedEventArgs e)
+    {
+        if (BooksDataGrid.SelectedItem is not Book book) return;
+
+
+        var editWindow = new EditBookWindow(book)
+        {
+            Owner = this
+        };
+
+        bool? result = editWindow.ShowDialog();
+        if(result == true)
+        {
+            if(DataContext is MainViewModel vm)
+            {
+                var index = vm.Books.IndexOf(book);
+                if(index >= 0)
+                {
+                    vm.Books[index] = book;
+                }
+            }
+        }
+
+        _dbContext.SaveChanges();
+    }
+
+    private void DeleteBook_Click(object sender, RoutedEventArgs e)
+    {
+        if (BooksDataGrid.SelectedItem is not Book book) return;
+
+        var result = MessageBox.Show(
+            $"Are you sure you want to delete \"{book.Title}\"?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result != MessageBoxResult.Yes) return;
+
+        // remove from db
+
+        _dbContext.Books.Remove(book);
+        _dbContext.SaveChanges();
+
+        // remove from UI
+
+        if (DataContext is MainViewModel vm)
+        {
+            vm.Books.Remove(book);
+        }
+    }
 }

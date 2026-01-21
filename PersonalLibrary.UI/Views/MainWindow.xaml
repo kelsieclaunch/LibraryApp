@@ -44,8 +44,17 @@
                 GridLinesVisibility="None"
                 CellEditEnding="BooksDataGrid_CellEditEnding"
                 MouseDoubleClick="BooksDataGrid_MouseDoubleClick"
+                SelectionMode="Single"
+                SelectionUnit="FullRow"
                 RowHeight="32"
                 FontSize="12">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit Book" Click="EditBook_Click"/>
+                        <MenuItem Header="Delete Book" Click="DeleteBook_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
