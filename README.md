@@ -1,7 +1,8 @@
 # The Book Nook
 A personal library tracker built with .NET 10 WPF and EF Core.
 
-![Main Window](assets/MainWindow.png)
+![Main Window](assets/MainWindow.png)<br>
+
 _The main dashboard showing books and their reading status._
 
 ## Overview
