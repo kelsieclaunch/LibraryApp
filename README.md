@@ -2,7 +2,6 @@
 A personal library tracker built with .NET 10 WPF and EF Core.
 
 ![Main Window](assets/MainWindow.png)<br>
-
 _The main dashboard showing books and their reading status._
 
 ## Overview
@@ -25,8 +24,6 @@ This project was built to practice Entity Framework Core and SQL Server in .NET 
 ### When a book is first added
 ![First Added](assets/WhenFirstAdded.png)
 
-### Reading Status Dropdown
-![Reading Status Dropdown](assets/ReadingStatusDropdown.png)
 
 ### When status is set to 'Reading'
 ![Status set to reading](assets/WhenSetToReading.png)
