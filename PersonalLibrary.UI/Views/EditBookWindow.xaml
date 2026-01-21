@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalLibrary.UI.Views"
         mc:Ignorable="d"
-        Title="Edit Book" Height="400" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="{StaticResource BackgroundBrush}">
+        Title="Edit Book" Height="500" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="{StaticResource BackgroundBrush}">
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -55,13 +59,13 @@
         </StackPanel>
 
         <!-- Rating -->
-        <TextBlock Text="Rating" Grid.Row="8" FontWeight="SemiBold"/> "
+        <TextBlock Text="Rating" Grid.Row="8" FontWeight="SemiBold"/> 
         <StackPanel Orientation="Horizontal" Grid.Row="9" HorizontalAlignment="Left" Margin="0,4,0,8">
-            <Button Content="☆" Tag="1" FontSize="24" Click="Star_Click" x:Name="Star1"/>
-            <Button Content="☆" Tag="2" FontSize="24" Click="Star_Click" x:Name="Star2"/>
-            <Button Content="☆" Tag="3" FontSize="24" Click="Star_Click" x:Name="Star3"/>
-            <Button Content="☆" Tag="4" FontSize="24" Click="Star_Click" x:Name="Star4"/>
-            <Button Content="☆" Tag="5" FontSize="24" Click="Star_Click" x:Name="Star5"/>
+            <Button x:Name="Star1" Content="☆" Tag="1" FontSize="16" Click="Star_Click"/>
+            <Button x:Name="Star2" Content="☆" Tag="2" FontSize="16" Click="Star_Click"/>
+            <Button x:Name="Star3" Content="☆" Tag="3" FontSize="16" Click="Star_Click"/>
+            <Button x:Name="Star4" Content="☆" Tag="4" FontSize="16" Click="Star_Click"/>
+            <Button x:Name="Star5" Content="☆" Tag="5" FontSize="16" Click="Star_Click"/>
         </StackPanel>
 
         <!-- Buttons -->

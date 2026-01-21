@@ -5,14 +5,14 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
          <!-- Colors -->
-        <Color x:Key="BackgroundColor">#F6F7F4</Color>
-        <Color x:Key="SurfaceColor">#FFFFFF</Color>
-        <Color x:Key="PrimaryColor">#8FAE9E</Color>
-        <Color x:Key="SecondaryColor">#6F8F7E</Color>
-        <Color x:Key="AccentColor">#D6BFAF</Color>
-        <Color x:Key="TextPrimaryColor">#2E2E2E</Color>
-        <Color x:Key="TextMutedColor">#6B6B6B</Color>
-        <Color x:Key="DividerColor">#E2E4DF</Color>
+        <Color x:Key="BackgroundColor">#9BA986</Color>
+        <Color x:Key="SurfaceColor">#C7B89B</Color>
+        <Color x:Key="PrimaryColor">#A18865</Color>
+        <Color x:Key="SecondaryColor">#B4A377</Color>
+        <Color x:Key="AccentColor">#A18865</Color>
+        <Color x:Key="TextPrimaryColor">#5C452A</Color>
+        <Color x:Key="TextMutedColor">#7C6543</Color>
+        <Color x:Key="DividerColor">#9D8E70</Color>
 
         <!-- Brushes -->
         <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
